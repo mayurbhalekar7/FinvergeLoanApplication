@@ -1,5 +1,7 @@
 package com.EnquiryModule.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.EnquiryModule.model.Enquiry;
 import com.EnquiryModule.serviceI.EnquiryServiceI;
+
 
 @RestController
 public class EnquiryController {
@@ -32,6 +35,13 @@ public class EnquiryController {
 		
 		enqs.addEnquiry(eq);
 		return rs;
+	}
+	
+	@GetMapping("/getAllEnquiries")
+	public List<Enquiry> getAllEnquiry()
+	{
+		List<Enquiry> elist=enqs.getAllEnquiries();
+		return elist;
 	}
 	
 }
