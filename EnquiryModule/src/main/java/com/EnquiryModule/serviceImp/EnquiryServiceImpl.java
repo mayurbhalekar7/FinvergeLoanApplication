@@ -1,5 +1,7 @@
 package com.EnquiryModule.serviceImp;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,12 @@ public class EnquiryServiceImpl implements EnquiryServiceI {
 		
 		er.save(eq);
 		
+	}
+
+	@Override
+	public List<Enquiry> getAllEnquiries() {
+
+		return er.findAll();
 	}
 
 }
