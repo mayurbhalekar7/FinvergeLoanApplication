@@ -5,12 +5,13 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -58,9 +59,29 @@ public class EnquiryController {
 		}
 		else
 		{
-			System.out.println("Exexute properly");
 			throw new EnquiryNotFoundException("Invalid Enquiry Id");
 			
 		}
+	}
+	
+	@PutMapping("/updateEnquiry/{enquiryId}")
+	public ResponseEntity<String> updateEnquiry(@PathVariable("enquiryId") int eid,@RequestBody Enquiry eq)
+	{
+		Optional<Enquiry> enq=enqs.getEnquriryById(eid);
+		if(enq.isPresent())
+		{
+			//return new ResponseEntity<>(enq.get(), HttpStatus.OK);
+			enqs.updateEnquiry(eid,eq);
+			ResponseEntity<String> rs=new ResponseEntity<String>("Your Enquiry Updated...",HttpStatus.OK);
+			
+			return rs;
+		}
+		else
+		{
+			throw new EnquiryNotFoundException("Invalid Enquiry Id");
+			
+		}
+		
+		
 	}
 }
