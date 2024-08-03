@@ -43,4 +43,10 @@ public class EnquiryServiceImpl implements EnquiryServiceI {
 		er.save(eq);
 	}
 
+	@Override
+	public void deleteEnquiry(int eid) {
+		
+		er.deleteById(eid);
+	}
+
 }

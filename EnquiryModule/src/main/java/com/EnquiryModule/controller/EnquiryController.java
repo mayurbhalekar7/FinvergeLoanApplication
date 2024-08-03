@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +36,6 @@ public class EnquiryController {
 	public ResponseEntity<String> addEnquiry(@RequestBody Enquiry eq)
 	{ 
 		ResponseEntity<String> rs=new ResponseEntity<String>("Send your Enquiry successfully...",HttpStatus.CREATED);
-		
 		enqs.addEnquiry(eq);
 		return rs;
 	}
@@ -60,7 +59,6 @@ public class EnquiryController {
 		else
 		{
 			throw new EnquiryNotFoundException("Invalid Enquiry Id");
-			
 		}
 	}
 	
@@ -70,18 +68,28 @@ public class EnquiryController {
 		Optional<Enquiry> enq=enqs.getEnquriryById(eid);
 		if(enq.isPresent())
 		{
-			//return new ResponseEntity<>(enq.get(), HttpStatus.OK);
 			enqs.updateEnquiry(eid,eq);
 			ResponseEntity<String> rs=new ResponseEntity<String>("Your Enquiry Updated...",HttpStatus.OK);
-			
 			return rs;
 		}
 		else
 		{
 			throw new EnquiryNotFoundException("Invalid Enquiry Id");
-			
 		}
-		
-		
+	}
+	  @DeleteMapping("/deleteEnquiry/{enquiryId}") 
+	public  ResponseEntity<String> deleteEnquiry(@PathVariable("enquiryId") int eid)
+	{
+		  Optional<Enquiry> enq=enqs.getEnquriryById(eid);
+			if(enq.isPresent())
+			{
+				enqs.deleteEnquiry(eid);
+				ResponseEntity<String> rs=new ResponseEntity<String>("Your Enquiry deleted...",HttpStatus.OK);
+				return rs;
+			}
+			else
+			{
+				throw new EnquiryNotFoundException("Invalid Enquiry Id");
+			}
 	}
 }

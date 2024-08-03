@@ -17,4 +17,6 @@ public interface EnquiryServiceI {
 
 	void updateEnquiry(int eid, Enquiry eq);
 
+	void deleteEnquiry(int eid);
+
 }
