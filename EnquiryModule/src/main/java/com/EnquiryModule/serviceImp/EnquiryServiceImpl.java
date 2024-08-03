@@ -37,4 +37,10 @@ public class EnquiryServiceImpl implements EnquiryServiceI {
 		return enq;
 	}
 
+	@Override
+	public void updateEnquiry(int eid, Enquiry eq) {
+
+		er.save(eq);
+	}
+
 }

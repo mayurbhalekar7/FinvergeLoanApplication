@@ -15,4 +15,6 @@ public interface EnquiryServiceI {
 
 	Optional<Enquiry> getEnquriryById(int enquiryId);
 
+	void updateEnquiry(int eid, Enquiry eq);
+
 }
