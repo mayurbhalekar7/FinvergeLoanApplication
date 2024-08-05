@@ -32,7 +32,7 @@ public class EnquiryServiceImpl implements EnquiryServiceI {
 		
 		message.setSubject("Finvaege Enquiry Status");
 		
-		message.setText("hello  "+eq.getFirstName()+" "+eq.getLastName()+"\n  Your Enquiry recived to Finverge Finance we will update you for your  EnquiryStatus ");
+		message.setText("Hello  "+eq.getFirstName()+" "+eq.getLastName()+"\n  Your Enquiry recived to Finverge Finance we will update you for your  EnquiryStatus\n\n\n Thanks & Regards,\n Finverge Team  ");
 		
 		sender.send(message);
 		
