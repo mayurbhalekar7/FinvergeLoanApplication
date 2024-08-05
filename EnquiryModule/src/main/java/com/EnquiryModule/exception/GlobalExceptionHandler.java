@@ -23,5 +23,18 @@ public class GlobalExceptionHandler {
 		error.setTimeStamp(new Date());
 		return new ResponseEntity<ApiError>(error,HttpStatus.NOT_FOUND);
 	}
+	
+	@ExceptionHandler(value = PancardAlreadyExistException.class)
+	public ResponseEntity<ApiError>PancardAlreadyExistException(HttpServletRequest request)
+	{
+		ApiError error=new ApiError();
+		error.setMassage("Pancard Already Exist");
+		error.setPath(request.getRequestURI());
+		error.setStatusCode(HttpStatus.NOT_FOUND.value());
+		error.setStatusMessage(HttpStatus.NOT_FOUND);
+		error.setTimeStamp(new Date());
+		return new ResponseEntity<ApiError>(error,HttpStatus.NOT_FOUND);
+		
+	}
 
 }

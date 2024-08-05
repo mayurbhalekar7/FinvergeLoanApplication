@@ -9,6 +9,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.EnquiryModule.exception.PancardAlreadyExistException;
 import com.EnquiryModule.model.Enquiry;
 import com.EnquiryModule.repository.EnquiryRepository;
 import com.EnquiryModule.serviceI.EnquiryServiceI;
@@ -36,9 +37,19 @@ public class EnquiryServiceImpl implements EnquiryServiceI {
 		
 		sender.send(message);
 		
-		er.save(eq);
-		
-	}
+		// List<Enquiry> elist=er.findAll();
+		  Optional<Enquiry> eo=er.findByPancard(eq.getPancard());
+		  
+			if(eo.isPresent())
+			{
+				throw new PancardAlreadyExistException("Pancard already exist..."); 
+			}
+			else
+			{
+				er.save(eq);
+			}
+				
+		 }
 
 	@Override
 	public List<Enquiry> getAllEnquiries() {
