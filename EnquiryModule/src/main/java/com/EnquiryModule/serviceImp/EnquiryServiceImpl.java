@@ -59,32 +59,24 @@ public class EnquiryServiceImpl implements EnquiryServiceI {
 		er.save(eq);
 	}
 
-//	@Override
-//	public void chechCibilScoreByIdAndSendEmail(int enquiryId) {
-//		 Enquiry enquery=er.findById(enquiryId).get();
-//		 
-//		 enquery.getCibil().setCibilScore(cibilScore);
-//		 
-//		 SimpleMailMessage message=new SimpleMailMessage();
-//			
-//			message.setTo(enquery.getEmail());
-//			
-//			message.setSubject("Finvaege Enquiry Status");
-//			 if(cibilScore<650)
-//			 {  
-//			message.setText("hello  "+enquery.getFirstName()+" "+enquery.getLastName()+"\n your Cibil is "+cibilScore+" is not upto ta mark so We can't forword your Loan Application ");
-//			enquery.getCibil().setCibilStatus("Bad");
-//			  er.save(enquery);
-//			 }
-//			 else {
-//				 message.setText("hello  "+enquery.getFirstName()+" "+enquery.getLastName()+"\n your Cibil is "+cibilScore+" is  good so We c forword your Loan Application ");
-//				 enquery.getCibil().setCibilStatus("Good");
-//				 er.save(enquery);
-//			 }
-//			sender.send(message);
-//		  
-//		
-//		
-//	}
+
+	@Override
+	public void deleteEnquiry(int eid) {
+		
+		er.deleteById(eid);
+	}
+
+	@Override
+	public Optional<List<Enquiry>> getEnquiryByLoanStatus(String loanStatus) {
+		 Optional<List<Enquiry>> enq=er.findAllByLoanStatus(loanStatus);
+		return enq;
+	}
+
+	@Override
+	public void updateEnquiryStatus(int enquiryId, Enquiry eq) {
+		er.save(eq);
+		
+	}
+
 
 }

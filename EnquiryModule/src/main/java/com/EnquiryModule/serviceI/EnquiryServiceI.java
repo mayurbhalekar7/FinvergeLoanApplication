@@ -17,8 +17,14 @@ public interface EnquiryServiceI {
 
 	void updateEnquiry(int eid, Enquiry eq);
 
-	 
 
-	//public void chechCibilScoreByIdAndSendEmail(int enquiryId);
+	void deleteEnquiry(int eid);
+
+	Optional<List<Enquiry>> getEnquiryByLoanStatus(String loanStatus);
+
+	void updateEnquiryStatus(int enquiryId, Enquiry eq);
+
+	
+
 
 }
