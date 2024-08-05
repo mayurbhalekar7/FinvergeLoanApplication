@@ -2,9 +2,11 @@ package com.EnquiryModule.serviceImp;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.EnquiryModule.model.Enquiry;
@@ -17,8 +19,22 @@ public class EnquiryServiceImpl implements EnquiryServiceI {
 	@Autowired
 	EnquiryRepository er;
 	
+	@Autowired
+	private JavaMailSender sender; 
+	
+	int cibilScore=ThreadLocalRandom.current().nextInt(300, 900);
+	
 	@Override
 	public void addEnquiry(Enquiry eq) {
+    SimpleMailMessage message=new SimpleMailMessage();
+		
+		message.setTo(eq.getEmail());
+		
+		message.setSubject("Finvaege Enquiry Status");
+		
+		message.setText("hello  "+eq.getFirstName()+" "+eq.getLastName()+"\n  Your Enquiry recived to Finverge Finance we will update you for your  EnquiryStatus ");
+		
+		sender.send(message);
 		
 		er.save(eq);
 		
@@ -43,6 +59,7 @@ public class EnquiryServiceImpl implements EnquiryServiceI {
 		er.save(eq);
 	}
 
+
 	@Override
 	public void deleteEnquiry(int eid) {
 		
@@ -61,6 +78,5 @@ public class EnquiryServiceImpl implements EnquiryServiceI {
 		
 	}
 
-	
 
 }

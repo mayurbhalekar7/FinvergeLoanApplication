@@ -67,6 +67,7 @@ public class EnquiryController {
 		}
 	}
 	
+
 	@PutMapping("/updateEnquiry/{enquiryId}")
 	public ResponseEntity<String> updateEnquiry(@PathVariable("enquiryId") int eid,@RequestBody Enquiry eq)
 	{
