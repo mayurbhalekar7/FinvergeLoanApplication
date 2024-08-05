@@ -36,8 +36,12 @@ public class EnquiryController {
 	public ResponseEntity<String> addEnquiry(@RequestBody Enquiry eq)
 	{ 
 		ResponseEntity<String> rs=new ResponseEntity<String>("Send your Enquiry successfully...",HttpStatus.CREATED);
+		
+		
+			
 		enqs.addEnquiry(eq);
 		return rs;
+		
 	}
 	
 	@GetMapping("/getAllEnquiries")
@@ -53,13 +57,16 @@ public class EnquiryController {
 	{
 		Optional<Enquiry> enq=enqs.getEnquriryById(enquiryId);
 		if(enq.isPresent())
+			
 		{
 			return new ResponseEntity<>(enq.get(), HttpStatus.OK);
 		}
 		else
 		{
+			
 			throw new EnquiryNotFoundException("Invalid Enquiry Id");
 		}
+		
 	}
 	
 	@PutMapping("/updateEnquiry/{enquiryId}")

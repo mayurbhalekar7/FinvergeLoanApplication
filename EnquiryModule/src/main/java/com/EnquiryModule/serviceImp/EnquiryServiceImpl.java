@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.EnquiryModule.exception.PancardAlreadyExistException;
 import com.EnquiryModule.model.Enquiry;
 import com.EnquiryModule.repository.EnquiryRepository;
 import com.EnquiryModule.serviceI.EnquiryServiceI;
@@ -20,9 +21,19 @@ public class EnquiryServiceImpl implements EnquiryServiceI {
 	@Override
 	public void addEnquiry(Enquiry eq) {
 		
-		er.save(eq);
-		
-	}
+		// List<Enquiry> elist=er.findAll();
+		  Optional<Enquiry> eo=er.findByPancard(eq.getPancard());
+		  
+			if(eo.isPresent())
+			{
+				throw new PancardAlreadyExistException("Pancard already exist..."); 
+			}
+			else
+			{
+				er.save(eq);
+			}
+				
+		 }
 
 	@Override
 	public List<Enquiry> getAllEnquiries() {
