@@ -2,9 +2,11 @@ package com.EnquiryModule.serviceImp;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.EnquiryModule.exception.PancardAlreadyExistException;
@@ -18,8 +20,22 @@ public class EnquiryServiceImpl implements EnquiryServiceI {
 	@Autowired
 	EnquiryRepository er;
 	
+	@Autowired
+	private JavaMailSender sender; 
+	
+	int cibilScore=ThreadLocalRandom.current().nextInt(300, 900);
+	
 	@Override
 	public void addEnquiry(Enquiry eq) {
+    SimpleMailMessage message=new SimpleMailMessage();
+		
+		message.setTo(eq.getEmail());
+		
+		message.setSubject("Finvaege Enquiry Status");
+		
+		message.setText("Hello,"+eq.getFirstName()+" "+eq.getLastName()+"\n Your Enquiry received to Finverge Finance, we will update you for your enquiry status.\n\n\n Thanks & Regards,\n Finverge Team");
+		
+		sender.send(message);
 		
 		// List<Enquiry> elist=er.findAll();
 		  Optional<Enquiry> eo=er.findByPancard(eq.getPancard());
@@ -54,10 +70,24 @@ public class EnquiryServiceImpl implements EnquiryServiceI {
 		er.save(eq);
 	}
 
+
 	@Override
 	public void deleteEnquiry(int eid) {
 		
 		er.deleteById(eid);
 	}
+
+	@Override
+	public Optional<List<Enquiry>> getEnquiryByLoanStatus(String loanStatus) {
+		 Optional<List<Enquiry>> enq=er.findAllByLoanStatus(loanStatus);
+		return enq;
+	}
+
+	@Override
+	public void updateEnquiryStatus(int enquiryId, Enquiry eq) {
+		er.save(eq);
+		
+	}
+
 
 }

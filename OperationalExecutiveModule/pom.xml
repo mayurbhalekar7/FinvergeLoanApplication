@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>EnquiryModule</artifactId>
+	<artifactId>OperationalExecutiveModule</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>EnquiryModule</name>
-	<description>Demo project for Spring Boot</description>
+	<name>OperationalExecutiveModule</name>
+	<description>OperationalExecutiveModule</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -79,16 +79,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
-		</dependency>
-		<dependency>
-		    <groupId>org.springdoc</groupId>
-		    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-		    <version>2.5.0</version>
-		</dependency>
-
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -99,12 +89,6 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<dependency>
-				<groupId>org.springdoc</groupId>
-				<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-				<version>2.5.0</version>
-			</dependency>
-		
 		</dependencies>
 	</dependencyManagement>
 

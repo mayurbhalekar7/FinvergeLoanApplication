@@ -1,4 +1,4 @@
-package com.EnquiryModule.model;
+package com.OperationalExecutiveModule.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
