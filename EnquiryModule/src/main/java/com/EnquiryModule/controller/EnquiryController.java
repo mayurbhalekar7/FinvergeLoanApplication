@@ -64,24 +64,26 @@ public class EnquiryController {
 		}
 	}
 	
-	@PutMapping("/updateEnquiry/{enquiryId}")
-	public ResponseEntity<String> updateEnquiry(@PathVariable("enquiryId") int eid,@RequestBody Enquiry eq)
-	{
-		Optional<Enquiry> enq=enqs.getEnquriryById(eid);
-		if(enq.isPresent())
-		{
-			//return new ResponseEntity<>(enq.get(), HttpStatus.OK);
-			enqs.updateEnquiry(eid,eq);
-			ResponseEntity<String> rs=new ResponseEntity<String>("Your Enquiry Updated...",HttpStatus.OK);
-			
-			return rs;
-		}
-		else
-		{
-			throw new EnquiryNotFoundException("Invalid Enquiry Id");
-			
-		}
-		
-		
-	}
+//	@PutMapping("/updateEnquiry/{enquiryId}")
+//	public ResponseEntity<String> updateEnquiry(@PathVariable("enquiryId") int eid,@RequestBody Enquiry eq)
+//	{
+//		Optional<Enquiry> enq=enqs.getEnquriryById(eid);
+//		if(enq.isPresent())
+//		{
+//			//return new ResponseEntity<>(enq.get(), HttpStatus.OK); 
+//			enqs.updateEnquiry(eid,eq);
+//			ResponseEntity<String> rs=new ResponseEntity<String>("Your Enquiry Updated...",HttpStatus.OK);
+//			
+//			return rs;
+//		}
+//		else
+//		{
+//			throw new EnquiryNotFoundException("Invalid Enquiry Id");
+//			
+//		}
+//			
+//	}
+//	
+	
+	
 }
