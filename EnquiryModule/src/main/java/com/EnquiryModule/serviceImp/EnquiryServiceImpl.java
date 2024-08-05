@@ -49,4 +49,18 @@ public class EnquiryServiceImpl implements EnquiryServiceI {
 		er.deleteById(eid);
 	}
 
+	@Override
+	public Optional<List<Enquiry>> getEnquiryByLoanStatus(String loanStatus) {
+		 Optional<List<Enquiry>> enq=er.findAllByLoanStatus(loanStatus);
+		return enq;
+	}
+
+	@Override
+	public void updateEnquiryStatus(int enquiryId, Enquiry eq) {
+		er.save(eq);
+		
+	}
+
+	
+
 }

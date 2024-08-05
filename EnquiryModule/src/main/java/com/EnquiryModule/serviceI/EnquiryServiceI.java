@@ -19,4 +19,10 @@ public interface EnquiryServiceI {
 
 	void deleteEnquiry(int eid);
 
+	Optional<List<Enquiry>> getEnquiryByLoanStatus(String loanStatus);
+
+	void updateEnquiryStatus(int enquiryId, Enquiry eq);
+
+	
+
 }

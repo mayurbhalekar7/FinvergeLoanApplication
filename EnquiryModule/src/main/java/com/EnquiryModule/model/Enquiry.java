@@ -33,6 +33,8 @@ public class Enquiry {
 	private String gender;
 	
 	private String enquiryStatus;
+	
+	private String loanStatus;
 	 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Cibil cibil;
