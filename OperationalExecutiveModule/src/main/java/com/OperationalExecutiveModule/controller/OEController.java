@@ -21,10 +21,10 @@ public class OEController {
 	@Autowired
 	OEServiceI oei;
 	
-	@GetMapping("/getEnquiryByIdAndStatus/{enquiryStatus}/")
-	public ResponseEntity<List<Enquiry>>getEnquriryById(@PathVariable("enquiryStatus")String enquiryStatus) 
+	@GetMapping("/getEnquiryByEnquiryStatus")
+	public ResponseEntity<List<Enquiry>>getEnquiryByEnquiryStatus() 
 	{
-	 List<Enquiry> eqList = oei.getByStatus(enquiryStatus);
+	 List<Enquiry> eqList = oei.getByStatus("f2oe");
 			 ResponseEntity<List<Enquiry>> elist= new ResponseEntity<List<Enquiry>>(eqList, HttpStatus.OK);
 	  return elist;
 	  
