@@ -1,13 +1,11 @@
 package com.OperationalExecutiveModule.serviceI;
 
-import java.util.List;
+import java.util.Optional;
 
 import com.OperationalExecutiveModule.model.Enquiry;
 
 public interface OEServiceI {
 
-
-
-	public List<Enquiry> getByStatus(String enquiryStatus);
+	Optional<Enquiry> checkCibilScore(int eid);
 
 }
