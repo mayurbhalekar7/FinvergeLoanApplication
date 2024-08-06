@@ -36,7 +36,7 @@ public class Enquiry {
 	
 	private String loanStatus;
 	 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL,orphanRemoval=true)
 	private Cibil cibil;
 
 }
